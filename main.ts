@@ -33,6 +33,7 @@ app.use(oakCors({
 // logger
 app.use(async (ctx, next) => {
   const start = Date.now();
+  const url = ctx.request.url.toString();
   await next(); // run the rest of the middleware before continuing, i.e. finish logging at the end
 
   // assign context details
@@ -41,7 +42,6 @@ app.use(async (ctx, next) => {
   const date = format(new Date(), "yyyy-MM-dd HH:mm:ss.SSS");
   const ip = ctx.request.headers.get("x-forwarded-for") || ctx.request.ip;
   const method = ctx.request.method;
-  const url = ctx.request.url.toString();
 
   // append context details to log
   const log: string = `${date} ${responseTime} ${ip} ${method} ${url}\n`
