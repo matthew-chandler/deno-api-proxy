@@ -3,7 +3,7 @@
     "processes": [
       {
         "id": "proxy",
-        "cmd": "deno run -A ./main.ts",
+        "cmd": "deno run --allow-read --allow-write --allow-net ./main.ts",
         "autostart": true
       }
     ]
