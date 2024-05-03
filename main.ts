@@ -12,8 +12,8 @@ const API_BASE_URL = env.API_BASE_URL;
 const API_KEY_NAME = env.API_KEY_NAME;
 const API_KEY_VALUE = env.API_KEY_VALUE;
 const CLIENT_URL = env.CLIENT_URL || "*";
-const RATE_REQUEST_MAX = env.RATE_REQUEST_MAX || 50;
-const RATE_WINDOW_MS = env.RATE_WINDOW_MS || 86400000;
+const RATE_REQUEST_MAX = parseInt(env.RATE_REQUEST_MAX) || 50;
+const RATE_WINDOW_MS = parseInt(env.RATE_WINDOW_MS) || 86400000;
 
 const app = new Application();
 
