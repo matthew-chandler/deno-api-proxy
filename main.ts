@@ -11,14 +11,16 @@ const PORT = parseInt(env.PORT) || 5000;
 const API_BASE_URL = env.API_BASE_URL;
 const API_KEY_NAME = env.API_KEY_NAME;
 const API_KEY_VALUE = env.API_KEY_VALUE;
-const CLIENT_URL = env.CLIENT_URL;
+const CLIENT_URL = env.CLIENT_URL || "*";
+const RATE_REQUEST_MAX = env.RATE_REQUEST_MAX || 50;
+const RATE_WINDOW_MS = env.RATE_WINDOW_MS || 86400000;
 
 const app = new Application();
 
 // rate limiting
 const rateLimit = RateLimiter({
-  windowMs: 1000 * 60 * 60 * 24, // 1 day in number of milliseconds
-  max: 50, // maximum of 50 requests per day
+  windowMs: RATE_WINDOW_MS, // 1 day in number of milliseconds
+  max: RATE_REQUEST_MAX, // maximum of 50 requests per day
   message: "Too many requests, please try again later.",
 });
 app.use(await rateLimit);
